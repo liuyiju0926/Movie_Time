@@ -1,0 +1,11 @@
+.bg{
+    width: 250px;
+    height: 250px;
+    background-color:antiquewhite;
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+select{
+    width: 100%;
+}

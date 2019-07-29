@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Time</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+    <div class="bg">
+        <ul type="none">
+            <li id="tab1" class="select">快速訂票</li>
+        </ul>
+        <div>
+            <form>
+                <ul type="none">
+                    <li><span class="fa fa-map-marker-alt"></span>
+                        <select name="theater">
+                            <option value="">請選擇影城</option>
+                            <option value="Taipei">台北</option>
+                            <option value="Taichung">台中</option>
+                            <option value="Kaohsiung">高雄</option>
+                        </select>
+                    </li>
+                    <li><span class="fas fa-video"></span>
+                        <select id="movie">
+                            <option value="">請選擇影片</option>
+                            <option value="">獅子王</option>
+                            <option value="">玩命關頭</option>
+                            <option value="">蜘蛛人/option>
+                            <option value="">從前，有個好萊塢</option>
+
+                        </select>
+                    </li>
+                    <li><span class="fas fa-table"></span>
+                        <select id="date">
+                            <option value="">請選擇日期</option>
+                        </select>
+                    </li>
+                    <br>
+                    <button>送出</button>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <!-- 全省威秀影城隔週電影新場次公布於每週二晚間23:59 -->
+    <!-- (假設週二整天只能查到：週二 週三 週四) -->
+    <!-- 會開放未來一週(週三會查到：今天到下星期四)之場次 -->
+    <script>
+        var d = new Date(); //是今天的日期
+        console.log(d);
+        console.log(d.getMonth() + 1);
+        console.log(d.getDate());
+        console.log(d.getDay());
+
+        var day_list = ['日', '一', '二', '三', '四', '五', '六'];
+        var result = "";
+        var wednesday = 3;
+        var week = d.getDay();
+        //星期日 一 二
+        if (week < wednesday) {
+            var temp = 3 - d.getDay();
+            for (var i = 0; i < temp; i++) {
+                result = ((d.getMonth() + 1) + '/' + d.getDate() + "(" + day_list[d.getDay()] + ")");
+                console.log((d.getMonth() + 1) + '/' + d.getDate() + "(" + day_list[d.getDay()] + ")");
+                d.setDate(d.getDate() + 1);
+                $("#date").append("<option>" + result + " </option>");
+            }
+            //星期三 四 五 六
+        } else if (week >= wednesday) {
+            var temp = 10 - d.getDay()
+            for (var i = 0; i < temp; i++) {
+                console.log((d.getMonth() + 1) + '/' + d.getDate() + "(" + day_list[d.getDay()] + ")");
+                result = ((d.getMonth() + 1) + '/' + d.getDate() + "(" + day_list[d.getDay()] + ")");
+                d.setDate(d.getDate() + 1);
+                $("#date").append("<option>" + result + " </option>");
+            }
+        }
+        
+            
+    </script>
+</body>
+
+</html>
